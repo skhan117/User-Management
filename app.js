@@ -193,9 +193,9 @@ app.get("/user/:email", (req, res) => {
 
   // Declare variables for parameter in route, and String for SQL query
   const anEmailAddress = req.params.email;
-  const queryString = "SELECT * FROM user WHERE email = ?";
+  const queryString = "SELECT * FROM user WHERE email = ? AND passcode = ?";
   // Execute a MySQL query to pull data from database
-  connection.query(queryString, [anEmailAddress], (err, rows, fields) => {
+  connection.query(queryString, [anEmailAddress, thisPasscode], (err, rows, fields) => {
 
     // First check for error in the SQL query
     if (err) {
