@@ -211,7 +211,7 @@ app.get("/user/:email", (req, res) => {
       return {AuthorNum: row.authorNum, firstName: row.authorFirst, lastName: row.authorLast}
     */
     const userInfo = rows.map((row) => {
-      return {email: row.email, name: row.name, address: row.address}      
+      return {email: row.email, username: row.username, passcode: row.passcode, name: row.name, address: row.address, nickname: row.nickname, phonenumber: row.phonenumber}      
   })
     // Return JSON to client (WORKS)
     res.json(userInfo);
