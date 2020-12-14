@@ -4,7 +4,7 @@ CEN4010 Final Project - Reduced scope
 Written by Shaan Khan
 */
 
-// Import Express and create an instance of it. This will be our server.
+// The Express library will provide our server.
 const express = require('express');
 const app = express();
 
@@ -36,7 +36,7 @@ function getConnection() {
   return mysql.createConnection({
     host: 'us-cdbr-east-02.cleardb.com',        
     user: 'b9d4c3681f80a2',
-    password: '9c3857fe',
+    password: process.env.MYSQLCONNECTION_PASSWORD,
     database: 'heroku_8b62da28ef089e5'
   })
 }
@@ -81,6 +81,8 @@ app.post('/new_user_registration', (req, res) => {
       return
     }
   })
+
+  // After the new user has been registered into the system, he is redirected to the update-registration page
   console.log("Registration of a new user was successful.");
   res.redirect('/update-registration.html');
   return;
