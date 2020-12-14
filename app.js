@@ -22,6 +22,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 // Static HTML files will be served from the public directory by Express
 app.use(express.static('./public'));
 
+// Declare some global variables.
+var thisEmail, thisUsername, thisPasscode, thisName, thisAddress, thisNickname, thisPhonenumber;
+
 // Specify root route. Use / for root. req = request, res = response.
 app.get("/", (req, res) => {
   // Log that the root route is being touched.
@@ -30,6 +33,7 @@ app.get("/", (req, res) => {
   // Here is the response to the client request to the root.
   res.send("You have reached the root.");
 })
+
 
 // GetConnection is a helper function that will connect to the clearDB database on Heroku.
 // The login information is retreived from the Heroku environment's config variables. 
@@ -69,8 +73,11 @@ app.post('/new_user_registration', (req, res) => {
 
   // Store the Strings input by user into variables
   var newEmailString = req.body.createNewEmail;
+  thisEmail = newEmailString;
   var newUsernameString = req.body.createNewUsername;
+  thisUsername = newUsernameString;
   var newPasscodeString = req.body.createNewPasscode;
+  thisPasscode = newPasscodeString;
 
   // queryString will hold SQL command to enter tuple with new user's info into database.
   const queryString = "INSERT INTO user (email, username, passcode) VALUES (?, ?, ?)";
