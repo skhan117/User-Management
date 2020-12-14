@@ -8,6 +8,8 @@ Written by Shaan Khan
 const express = require('express');
 const app = express();
 
+console.log("work pls");
+
 // Morgan will log requests. This will help us figure out errors in code.
 const morgan = require('morgan');
 app.use(morgan('short'));
