@@ -111,11 +111,11 @@ app.post('/user_update', (req, res) => {
   console.log("PhoneNumber: " + req.body.updatePhonenumber);  
 
   // Store the Strings input by user into variables
-  var updateUsernameString = req.body.updateNewUsername;
-  var updatePasscodeString = req.body.updateNewPasscode;
-  var updateNameString = req.body.updateNewName;
-  var updateAddressString = req.body.updateNewAddress;
-  var updateNicknameString = req.body.updateNewNickname;
+  var updateUsernameString = req.body.updateUsername;
+  var updatePasscodeString = req.body.updatePasscode;
+  var updateNameString = req.body.updateName;
+  var updateAddressString = req.body.updateAddress;
+  var updateNicknameString = req.body.updateNickname;
   var updatePhonenumberString = req.body.updatePhonenumber;
 
   // Store email of record to update
