@@ -92,7 +92,7 @@ app.post('/new_user_registration', (req, res) => {
   const queryString = "INSERT INTO user (email, username, passcode, name, address, nickname, phonenumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
   // Now execute MySQL query to insert these values into table. 
-  getConnection().query(queryString, [newEmailString, newUsernameString, newPasscodeString, newNameString, newAddressString, newNicknameString], (err, results, fields) => {
+  getConnection().query(queryString, [newEmailString, newUsernameString, newPasscodeString, newNameString, newAddressString, newNicknameString, newPhoneNumberString], (err, results, fields) => {
     if (err) {
       console.log("Failed to INSERT new user's registration info.");
       return
