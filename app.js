@@ -95,3 +95,42 @@ app.post('/new_user_registration', (req, res) => {
   res.redirect('/update-registration.html');
   return;
 })
+
+// POST method for updating a user's information.
+// The user will be able to update all their info, except for
+// their email address, since it serves as the primary key in the table.
+app.post('/user_update', (req, res) => {
+  console.log("Updating User info");
+
+  // Use bodyparser to get variables passed in
+  console.log("Username: " + req.body.updateUsername);
+  console.log("Passcode: " + req.body.updatePasscode);
+  console.log("Name: " + req.body.updateName);  
+  console.log("Address: " + req.body.updateAddress);  
+  console.log("Nickname: " + req.body.updateNickname);  
+  console.log("PhoneNumber: " + req.body.updatePhonenumber);  
+
+  // Store the Strings input by user into variables
+  var updateUsernameString = req.body.updateNewUsername;
+  var updatePasscodeString = req.body.updateNewPasscode;
+  var updateNameString = req.body.updateNewName;
+  var updateAddressString = req.body.updateNewAddress;
+  var updateNicknameString = req.body.updateNewNickname;
+  var updatePhonenumberString = req.body.updatePhonenumber;
+
+  // Store email of record to update
+  var emailString = thisEmail;  
+
+  // queryString will hold SQL command
+  const queryString = "UPDATE user SET username = ?, passcode = ?, name = ?, address = ?, nickname = ?, phonenumber = ? WHERE email = ?";
+
+  // Now execute MySQL query to update table
+  getConnection().query(queryString, [updateUsernameString, updatePasscodeString, updateNameString, updateAddressString, updateNicknameString, updatePhonenumberString, emailString], (err, results, fields) => {
+    if (err) {
+      console.log("Failed to UPDATE user info.");
+      return
+    }
+  })
+  console.log("Updating user's info was successful.");
+  res.redirect('/update-registration.html');  
+})
