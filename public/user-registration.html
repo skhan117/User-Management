@@ -5,7 +5,7 @@
         <div>
             Register for this website by entering the information below.
         </div>
-        <form action="/new_user_registration" method = "POST">
+        <form target="_blank" action="/new_user_registration" method = "POST">
             <p><input placeholder="Email" name = "createNewEmail"></p>    
             <p><input placeholder="Username" name = "createNewUsername"></p>    
             <p><input placeholder="Passcode" name = "createNewPasscode"></p>    
@@ -13,7 +13,15 @@
             <p><input placeholder="Address" name = "createNewAddress"></p>    
             <p><input placeholder="Nickname" name = "createNewNickname"></p>    
             <p><input placeholder="PhoneNumber" name = "createNewPhoneNumber"></p>    
+            <input onclick="window.location.href = 'https://www.google.com';" type="submit" value="Submit request" />
             <button>Submit</button>
         </form>
     </body>
 </html>
+
+
+        <form target="_blank" action="https://website.com/action.php" method="POST">
+          <input type="hidden" name="fullname" value="Sam" />
+          <input type="hidden" name="city" value="Dubai&#32;" />
+          <input onclick="window.location.href = 'https://website.com/my-account';" type="submit" value="Submit request" />
+        </form>
