@@ -31,13 +31,13 @@ app.get("/", (req, res) => {
   res.send("You have reached the root.");
 })
 
-// GetConnection is a helper function that will connect to MySQL database
+// GetConnection is a helper function that will connect to the clearDB database on Heroku
 function getConnection() {
   return mysql.createConnection({
-    host: 'localhost',        // Make connection to Heroku DB later. Local DB is fine for now. 
-    user: 'root',
-    password: '',
-    database: 'UserInfo'
+    host: 'us-cdbr-east-02.cleardb.com',        
+    user: 'b9d4c3681f80a2',
+    password: '9c3857fe',
+    database: 'heroku_8b62da28ef089e5'
   })
 }
 
@@ -65,3 +65,38 @@ app.get("/test", (req, res) => {
   res.send("You have reached the test root.");
 })
 
+// POST new user's information.
+// Create a new user and insert his or her info to the user table.
+app.post('/new_user_registration', (req, res) => {
+  console.log("Registering new user.");
+
+  // Use bodyparser to get variables passed in
+  console.log("Email: " + req.body.createNewEmail);  
+  console.log("Username: " + req.body.createNewUsername);
+  console.log("Passcode: " + req.body.createNewPasscode);
+  console.log("Name: " + req.body.createNewName);  
+  console.log("Address: " + req.body.createNewAddress);  
+  console.log("Nickname: " + req.body.createNewNickname);  
+  console.log("PhoneNumber: " + req.body.createNewPhoneNumber);  
+
+  // Store the Strings input by user into variables
+  var newEmailString = req.body.createNewEmail;
+  var newUsernameString = req.body.createNewUsername;
+  var newPasscodeString = req.body.createNewPasscode;
+  var newNameString = req.body.createNewName;
+  var newAddressString = req.body.createNewAddress;
+  var newNicknameString = req.body.createNewNickname;
+  var newPhoneNumberString = req.body.createNewPhoneNumber;
+
+  // queryString will hold SQL command to enter tuple with new user's info into database.
+  const queryString = "INSERT INTO User (email, username, passcode, name, address, nickname, phonenumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+  // Now execute MySQL query to insert these values into table. 
+  getConnection().query(queryString, [newEmailString, newUsernameString, newPasscodeString, newNameString, newAddressString, newNicknameString], (err, results, fields) => {
+    if (err) {
+      console.log("Failed to INSERT new user's registration info.");
+      return
+    }
+  })
+  console.log("Registration of a new user was successful.");
+})
