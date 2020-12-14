@@ -1,6 +1,6 @@
 /*
 User Management App
-CEN4010 Final Project - Reduced scope
+CEN4010
 Written by Shaan Khan
 */
 
