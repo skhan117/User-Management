@@ -56,15 +56,6 @@ app.get("/", (req, res) => {
   res.send("You have reached the root.");
 })
 
-// Specify a test route. 
-app.get("/test", (req, res) => {
-  // Log that the test route is being touched.
-  console.log("Responding to test route");
-
-  // Here is the response to the client request to the root.
-  res.send("You have reached the test root.");
-})
-
 // POST new user's information.
 // Create a new user and insert his or her info to the user table.
 app.post('/new_user_registration', (req, res) => {
@@ -99,4 +90,5 @@ app.post('/new_user_registration', (req, res) => {
     }
   })
   console.log("Registration of a new user was successful.");
+  return;
 })
