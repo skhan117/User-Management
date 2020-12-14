@@ -169,7 +169,7 @@ app.post('/user_update', (req, res) => {
     }
   })
   console.log("Updating user's info was successful.");
-  res.redirect('back');  
+  res.redirect('/update-success.html');  
   return;
 })
 
