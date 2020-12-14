@@ -169,7 +169,13 @@ app.post('/user_update', (req, res) => {
     }
   })
   console.log("Updating user's info was successful.");
-  res.redirect('/update-success.html');  
+
+  // We redirect to the GET method for this user
+  var str1 = '/user/'
+
+  var finalStringRedirect = str1.concat(thisEmail);
+
+  res.redirect(finalStringRedirect);  
   return;
 })
 
