@@ -43,9 +43,7 @@ function getConnection() {
 
 // On a local machine the application will listen to port 8087, but when deployed the port number will be
 // set by process.env.PORT, an environmental variable provided by Heroku. 
-const myPort = 8087 || process.env.PORT;
-
-app.listen(myPort, () => {
+app.listen((process.env.PORT || 8087), () => {
     console.log("Server is functional, and listening on port 8087.")
 })
 
