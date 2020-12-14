@@ -124,8 +124,42 @@ app.post('/user_update', (req, res) => {
   // queryString will hold SQL command
   const queryString = "UPDATE user SET username = ?, passcode = ?, name = ?, address = ?, nickname = ?, phonenumber = ? WHERE email = ?";
 
-  // Use global variables to deal with fields the user left blank.
-  if (updateUsernameString == '') updateUsernameString = thisUsername;
+  // Use global variables to deal with fields that the user left blank.
+  if (updateUsernameString == '') {updateUsernameString = thisUsername;
+  }
+  else {
+    thisUsername = req.body.updateUsername;
+  }
+
+  if (updatePasscodeString == '') {updatePasscodeString = thisPasscode;
+  }
+  else {
+    thisPasscode = req.body.updatePasscode;
+  }
+
+  if (updateNameString == '') {updateNameString = thisName;
+  }
+  else {
+    thisName = req.body.updatePasscode;
+  }
+
+  if (updateAddressString == '') {updateAddressString = thisAddress;
+  }
+  else {
+    thisAddress = req.body.updateAddress;
+  }  
+
+  if (updateNicknameString == '') {updateNicknameString = thisNickname;
+  }
+  else {
+    thisNickname = req.body.updateNickname;
+  }  
+
+  if (updatePhonenumberString == '') {updatePhonenumberString = thisPhonenumber;
+  }
+  else {
+    thisPhonenumber = req.body.updatePhonenumber;
+  }  
 
   // Now execute MySQL query to update table
   getConnection().query(queryString, [updateUsernameString, updatePasscodeString, updateNameString, updateAddressString, updateNicknameString, updatePhonenumberString, emailString], (err, results, fields) => {
