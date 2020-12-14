@@ -31,15 +31,13 @@ app.get("/", (req, res) => {
   res.send("You have reached the root.");
 })
 
-const pw = process.env.MYSQLCONNECTION_PASSWORD;
-
 // GetConnection is a helper function that will connect to the clearDB database on Heroku.
 // The login information is retreived from the Heroku environment's config variables. 
 function getConnection() {
   return mysql.createConnection({
     host: 'us-cdbr-east-02.cleardb.com',        
     user: 'b9d4c3681f80a2',
-    password: pw,
+    password: process.env.MYSQLCONNECTION_PASSWORD,
     database: 'heroku_8b62da28ef089e5'
   })
 }
