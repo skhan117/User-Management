@@ -35,10 +35,10 @@ app.get("/", (req, res) => {
 // The login information is retreived from the Heroku environment's config variables. 
 function getConnection() {
   return mysql.createConnection({
-    host: 'us-cdbr-east-02.cleardb.com',        
-    user: 'b9d4c3681f80a2',
+    host: process.env.MYSQLCONNECTION_HOST,        
+    user: process.env.MYSQLCONNECTION_USER,
     password: process.env.MYSQLCONNECTION_PASSWORD,
-    database: 'heroku_8b62da28ef089e5'
+    database: process.env.MYSQLCONNECTION_DATABASE
   })
 }
 
