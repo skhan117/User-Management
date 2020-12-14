@@ -125,7 +125,7 @@ app.post('/user_update', (req, res) => {
   const queryString = "UPDATE user SET username = ?, passcode = ?, name = ?, address = ?, nickname = ?, phonenumber = ? WHERE email = ?";
 
   // Use global variables to deal with fields the user left blank.
-  if (updateUsernameString == null) updateUsernameString = thisUsername;
+  if (updateUsernameString == '') updateUsernameString = thisUsername;
 
   // Now execute MySQL query to update table
   getConnection().query(queryString, [updateUsernameString, updatePasscodeString, updateNameString, updateAddressString, updateNicknameString, updatePhonenumberString, emailString], (err, results, fields) => {
@@ -135,5 +135,6 @@ app.post('/user_update', (req, res) => {
     }
   })
   console.log("Updating user's info was successful.");
-  res.redirect('/update-registration.html');  
+  res.redirect('back');  
+  return;
 })
