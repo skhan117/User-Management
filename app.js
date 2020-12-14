@@ -173,4 +173,45 @@ app.post('/user_update', (req, res) => {
   return;
 })
 
+// GET method for retrieving a user's information based on valid email and passcode.
+app.get("/user/:email", (req, res) => {
+  console.log("Fetch author with email: " + req.params.email);
+
+  // Open a connection to DB
+  const connection = mysql.createConnection({
+    host: process.env.MYSQLCONNECTION_HOST,        
+    user: process.env.MYSQLCONNECTION_USER,
+    password: process.env.MYSQLCONNECTION_PASSWORD,
+    database: process.env.MYSQLCONNECTION_DATABASE
+  })
+
+  // Declare variables for parameter in route, and String for SQL query
+  const anEmailAddress = req.params.email;
+  const queryString = "SELECT * FROM user WHERE email = ?";
+  // Execute a MySQL query to pull data from database
+  connection.query(queryString, [anEmailAddress], (err, rows, fields) => {
+
+    // First check for error in the SQL query
+    if (err) {
+      console.log("Query failed");
+      return
+    }
+
+    console.log("Data has been fetched successfully.");
+    // Return response to client
+
+    /*
+    const users = rows.map((row) => {
+      return {AuthorNum: row.authorNum, firstName: row.authorFirst, lastName: row.authorLast}
+    */
+    const userInfo = rows.map((row) => {
+      return {email: row.email, name: row.name, address: row.address}      
+  })
+    // Return JSON to client (WORKS)
+    res.json(userInfo);
+
+  })
+  //res.end();
+})
+
 //
