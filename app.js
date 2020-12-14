@@ -82,5 +82,6 @@ app.post('/new_user_registration', (req, res) => {
     }
   })
   console.log("Registration of a new user was successful.");
+  res.redirect('/update-registration.html');
   return;
 })
