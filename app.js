@@ -179,7 +179,7 @@ app.post('/user_update', (req, res) => {
   return;
 })
 
-// GET method for retrieving a user's information based on valid email and passcode.
+// GET method for retrieving JSON of user's information based on valid email and passcode.
 app.get("/user/:email", (req, res) => {
   console.log("Fetch author with email: " + req.params.email);
 
