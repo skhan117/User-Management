@@ -116,7 +116,7 @@ app.post('/user_update', (req, res) => {
   var updateNameString = req.body.updateName;
   var updateAddressString = req.body.updateAddress;
   var updateNicknameString = req.body.updateNickname;
-  var updatePhonenumberString = req.body.updatePhonenumber;
+  var updatePhonenumberString = req.body.updatePhoneNumber;
 
   // Store email of record to update
   var emailString = thisEmail;  
@@ -151,7 +151,7 @@ app.post('/user_update', (req, res) => {
     thisNickname = req.body.updateNickname;
 
   if (updatePhonenumberString == '') 
-    updatePhonenumberString = thisPhonenumber;
+    updatePhonenumberString = thisPhoneNumber;
   else 
     thisPhonenumber = req.body.updatePhonenumber;
 
