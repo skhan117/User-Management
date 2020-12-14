@@ -8,8 +8,6 @@ Written by Shaan Khan
 const express = require('express');
 const app = express();
 
-console.log("work pls");
-
 // Morgan will log requests. This will help us figure out errors in code.
 const morgan = require('morgan');
 app.use(morgan('short'));
@@ -38,7 +36,7 @@ function getConnection() {
   return mysql.createConnection({
     host: 'us-cdbr-east-02.cleardb.com',        
     user: 'b9d4c3681f80a2',
-    password: '9c3857fe',
+    password: process.env.MYSQLCONNECTION_PASSWORD,
     database: 'heroku_8b62da28ef089e5'
   })
 }
