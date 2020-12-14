@@ -89,7 +89,7 @@ app.post('/new_user_registration', (req, res) => {
   var newPhoneNumberString = req.body.createNewPhoneNumber;
 
   // queryString will hold SQL command to enter tuple with new user's info into database.
-  const queryString = "INSERT INTO User (email, username, passcode, name, address, nickname, phonenumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
+  const queryString = "INSERT INTO user (email, username, passcode, name, address, nickname, phonenumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
   // Now execute MySQL query to insert these values into table. 
   getConnection().query(queryString, [newEmailString, newUsernameString, newPasscodeString, newNameString, newAddressString, newNicknameString], (err, results, fields) => {
